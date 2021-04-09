@@ -17,9 +17,9 @@ public class Main {
         Zoo zoo = context.getBean("zoo", Zoo.class);
         zoo.getAnimal1().voice();
         zoo.getAnimal2().voice();
-        zoo.getAnimals().forEach(Animal::voice);
-        System.out.println(zoo.getName());
-        zoo.doAllAnimalsHungry();
+//        zoo.getAnimals().forEach(Animal::voice);
+//        System.out.println(zoo.getName());
+//        zoo.doAllAnimalsHungry();
 //        System.out.println(context.getEnvironment());
     }
 
