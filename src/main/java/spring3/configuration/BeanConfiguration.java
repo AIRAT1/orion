@@ -1,7 +1,9 @@
 package spring3.configuration;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import spring3.zoo.Animal;
 import spring3.zoo.Zoo;
@@ -12,7 +14,14 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
+@Profile("beanConfiguration")
 public class BeanConfiguration {
+    private final ApplicationEventPublisher eventPublisher;
+
+    public BeanConfiguration(ApplicationEventPublisher eventPublisher) {
+        this.eventPublisher = eventPublisher;
+    }
+
     @Bean(name = "cat")
     @Scope("prototype")
     public Cat createCat() {
@@ -36,7 +45,7 @@ public class BeanConfiguration {
 
     @Bean(name = "zoo")
     public Zoo createZoo() {
-        Zoo zoo = new Zoo(createCat(), createDog(), createAnimals());
+        Zoo zoo = new Zoo(createCat(), createDog(), createAnimals(), eventPublisher);
         return zoo;
     }
 }

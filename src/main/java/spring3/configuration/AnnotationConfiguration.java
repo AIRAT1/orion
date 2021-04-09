@@ -1,14 +1,11 @@
 package spring3.configuration;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 
 @Configuration
-@ComponentScan(value = {"spring3.zoo"},
-        excludeFilters = @ComponentScan.Filter(classes = {BeanConfiguration.class}, type = FilterType.ASSIGNABLE_TYPE))
+@ComponentScan(value = {"spring3.zoo"})
 @PropertySource("classpath:application.yml")
+@Profile("annotationConfiguration")
 public class AnnotationConfiguration {
 
 }

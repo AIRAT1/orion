@@ -3,7 +3,9 @@ package spring3.zoo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
+import spring3.zoo.event.AnimalIsHungryEvent;
 
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Zoo {
     private final List<Animal> animals;
     @Value("${name}")
     private String name;
+    private final ApplicationEventPublisher eventPublisher;
 
 //    @Autowired(required = false)
 //    public Zoo() {
@@ -26,10 +29,19 @@ public class Zoo {
 //    }
 
     @Autowired
-    public Zoo(@Qualifier("catQualifier") Animal cat, @Qualifier("dogQualifier") Animal dog, List<Animal> animals) {
+    public Zoo(
+            @Qualifier("catQualifier") Animal cat,
+            @Qualifier("dogQualifier") Animal dog,
+            List<Animal> animals,
+            ApplicationEventPublisher eventPublisher) {
         this.animal1 = cat;
         this.animal2 = dog;
         this.animals = animals;
+        this.eventPublisher = eventPublisher;
+    }
+
+    public void doAllAnimalsHungry() {
+        animals.forEach(animal -> eventPublisher.publishEvent(new AnimalIsHungryEvent<>(animal)));
     }
 
     public Animal getAnimal1() {
