@@ -36,8 +36,7 @@ public class BeanConfiguration {
 
     @Bean(name = "zoo")
     public Zoo createZoo() {
-        Zoo zoo = new Zoo(createCat(), createDog());
-        zoo.setAnimals(createAnimals());
+        Zoo zoo = new Zoo(createCat(), createDog(), createAnimals());
         return zoo;
     }
 }

@@ -15,6 +15,7 @@ public class Main {
         zoo.getAnimal1().voice();
         zoo.getAnimal2().voice();
         zoo.getAnimals().forEach(Animal::voice);
+        System.out.println(zoo.getName());
     }
 
     private static ApplicationContext getAnnotationContext() {
