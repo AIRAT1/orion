@@ -5,7 +5,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Configuration
-@ComponentScan(value = {"spring3.zoo"})
+@ComponentScan(value = {"spring3"})
 @PropertySource("classpath:application.yml")
 @Profile("annotationConfiguration")
 @EnableAspectJAutoProxy
